@@ -46,6 +46,7 @@ eventlistener clearbutton (click, clear())
 const gameContainer = document.querySelector('.gameCont')
 const clearBtn = document.querySelector('.clear')
 const squares = document.querySelectorAll('.square')
+const h2 = document.querySelector('h2')
 let currentPlayer = 'x'
 
 let gameGrid = [
@@ -131,21 +132,39 @@ const displayWinner = (winner) => {
     winText = document.querySelector('.winner')
     if (winner === currentPlayer ) {
         winText.textContent = `${currentPlayer} Wins!`
+        if (currentPlayer === 'x') {
+            results.style.backgroundColor = 'red'
+        } else {
+            results.style.backgroundColor = 'blue'
+        }
     } else{
         winText.textContent = `It's a tie!`
     }
     gameOver = true
 }
+const  displayCurrentPlayer = () =>{
+    if (gameOver === false){
+        h2.textContent = `It's ${currentPlayer} turn`
+    } else {
+        h2.textContent = `Game Over!`
+    }
 
+}
 gameContainer.addEventListener('click', function(e){
     if(gameOver === false){
         if (e.target.textContent === ''){
             e.target.textContent = currentPlayer
+            if (currentPlayer === 'x') {
+                e.target.style.color = 'red'
+            } else {
+                e.target.style.color = 'blue'
+            }
             gridID = e.target.id
             updateGameGrid(gridID)
             let winner = checkWinCondition()
             if (winner === currentPlayer || winner === 'tie') displayWinner(winner)
             changeCurrentPlayer()
+            displayCurrentPlayer()
             round +=1
         } 
     }

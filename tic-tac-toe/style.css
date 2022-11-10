@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500&display=swap');
 body{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Montserrat';
 
 }
 h1{
-    margin: 30px
+    font-size: 5vmin;
+    margin-top: 3vmin;
 }
 
 .rowCont {
@@ -15,8 +18,8 @@ h1{
 
 }
 .square{
-    width: 20vmin;
-    height: 20vmin;
+    width: 15vmin;
+    height: 15vmin;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,22 +50,27 @@ h1{
     color: white;
     position: relative;
     width: 60vmin;
-    height: 20vmin;
+    height: 15vmin;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     white-space: nowrap;
+    margin-bottom: 2vmin;
 }
 h3, h4, h5 {
     margin: 1vmin;
 }
 h3{
-    font-size: 4vmin;
+    font-size: 3vmin;
 }
 h4{
-    font-size: 4vmin;
+    font-size: 3vmin;
 }
 h5{
-    font-size: 2vmin;
+    font-size: 1.5vmin;
+}
+h2{
+    font-size: 3vmin;
+    margin-bottom: 5vmin;
 }
