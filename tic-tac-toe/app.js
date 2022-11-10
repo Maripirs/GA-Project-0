@@ -63,6 +63,11 @@ const clearSquare = (square) =>{
 
 const clearGame = () => {
     squares.forEach(clearSquare)
+    gameGrid = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
 }
 
 
