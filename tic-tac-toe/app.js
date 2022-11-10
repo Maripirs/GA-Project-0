@@ -48,7 +48,7 @@ const clearBtn = document.querySelector('.clear')
 const squares = document.querySelectorAll('.square')
 let currentPlayer = 'x'
 
-const gameGrid = [
+let gameGrid = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]

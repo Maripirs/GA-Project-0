@@ -43,13 +43,27 @@ h1{
     margin: 30px
 }
 .results{
-    background-color: aqua;
+    background-color: green;
+    color: white;
     position: absolute;
     width: 60vw;
     height: 20vh;
     bottom: 3vh;
     display: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
+}
+h3, h4, h5 {
+    margin: 2vmin;
+}
+h3{
+    font-size: 4vmin;
+}
+h4{
+    font-size: 4vmin;
+}
+h5{
+    font-size: 2vmin;
 }
