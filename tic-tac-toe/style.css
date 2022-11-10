@@ -1,0 +1,43 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+h1{
+    margin: 30px
+}
+
+.rowCont {
+    display: flex;
+    flex-direction: row;
+
+}
+.square{
+    width: 20vw;
+    max-width: 20vh;
+    height: 20vw;
+    max-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row1{
+    border-bottom: 3px solid black;
+}
+
+.row3{
+    border-top: 3px solid black
+}
+.col1{
+    border-right: 3px solid black
+}
+.col3{
+    border-left: 3px solid black
+}
+
+.clear{
+    margin: 30px
+}
