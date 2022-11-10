@@ -15,13 +15,14 @@ h1{
 
 }
 .square{
-    width: 20vw;
-    max-width: 20vh;
-    height: 20vw;
-    max-height: 20vh;
+    width: 20vmin;
+    height: 20vmin;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 8vmin;
+
+    
 }
 
 .row1{
