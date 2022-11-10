@@ -65,15 +65,35 @@ const clearGame = () => {
     squares.forEach(clearSquare)
 }
 
+
+const changeCurrentPlayer = () =>{    
+    if (currentPlayer === 'x'){
+        currentPlayer = 'o'
+    } else {
+        currentPlayer = 'x'
+    }
+}
+
+
+const checkWinCondition = () => {
+}
+//r1c3
+const updateGameGrid =(id) => {
+    idArr = id.split('')
+    let rvalue = parseInt(idArr[1])-1
+    let cvalue = parseInt(idArr[3])-1
+    gameGrid[1][2] = currentPlayer
+}
+
+
+
+
 gameContainer.addEventListener('click', function(e){
-    console.log(e.target, this)
     if (e.target.textContent === ''){
         e.target.textContent = currentPlayer
-        if (currentPlayer === 'x'){
-            currentPlayer = 'o'
-        } else {
-            currentPlayer = 'x'
-        }
+        gridID = e.target.id
+        updateGameGrid(gridID)
+        changeCurrentPlayer()
     } 
     })
 
