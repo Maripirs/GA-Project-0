@@ -121,6 +121,12 @@ const updateGameGrid =(id) => {
 const displayWinner = (winner) => {
     const results = document.querySelector('.results')
     results.style.display = 'flex'
+    winText = document.querySelector('.winner')
+    if (winner = currentPlayer ) {
+        winText.textContent = `${currentPlayer} Wins!`
+    } else{
+        winText.textContent = `It's a tie!`
+    }
 }
 
 gameContainer.addEventListener('click', function(e){
