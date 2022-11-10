@@ -86,24 +86,26 @@ const checkWinCondition = () => {
             currentPlayer === gameGrid[i][1] &&
             currentPlayer === gameGrid[i][2]) {
             console.log(currentPlayer, ' Wins!')
-            break
+            return currentPlayer
         }
         if (currentPlayer === gameGrid[0][i] &&
             currentPlayer === gameGrid[1][i] &&
             currentPlayer=== gameGrid[2][i]) {
             console.log(currentPlayer, ' Wins!')
-            break
+            return currentPlayer
         }
     }
     if (currentPlayer === gameGrid[0][0] &&
         currentPlayer === gameGrid[1][1] &&
         currentPlayer === gameGrid[2][2]) {
         console.log(currentPlayer, ' Wins!')
+        return currentPlayer
     }
     if (currentPlayer === gameGrid[0][2] &&
         currentPlayer === gameGrid[1][1] &&
         currentPlayer === gameGrid[2][0]) {
         console.log(currentPlayer, ' Wins!')
+        return currentPlayer
     }
 
 }
@@ -116,15 +118,18 @@ const updateGameGrid =(id) => {
 }
 
 
-
+const displayWinner = (winner) => {
+    const results = document.querySelector('.results')
+    results.style.display = 'flex'
+}
 
 gameContainer.addEventListener('click', function(e){
     if (e.target.textContent === ''){
         e.target.textContent = currentPlayer
         gridID = e.target.id
         updateGameGrid(gridID)
-        console.log(gameGrid)
-        checkWinCondition()
+        let winner = checkWinCondition()
+        if (winner === currentPlayer) displayWinner(winner)
         changeCurrentPlayer()
     } 
     })

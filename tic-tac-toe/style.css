@@ -42,3 +42,14 @@ h1{
 .clear{
     margin: 30px
 }
+.results{
+    background-color: aqua;
+    position: absolute;
+    width: 60vw;
+    height: 20vh;
+    bottom: 3vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
