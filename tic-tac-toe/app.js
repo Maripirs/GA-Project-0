@@ -76,13 +76,38 @@ const changeCurrentPlayer = () =>{
 
 
 const checkWinCondition = () => {
+    for (let i = 0; i < 3; i++) {
+        if (currentPlayer === gameGrid[i][0] &&
+            currentPlayer === gameGrid[i][1] &&
+            currentPlayer === gameGrid[i][2]) {
+            console.log(currentPlayer, ' Wins!')
+            break
+        }
+        if (currentPlayer === gameGrid[0][i] &&
+            currentPlayer === gameGrid[1][i] &&
+            currentPlayer=== gameGrid[2][i]) {
+            console.log(currentPlayer, ' Wins!')
+            break
+        }
+    }
+    if (currentPlayer === gameGrid[0][0] &&
+        currentPlayer === gameGrid[1][1] &&
+        currentPlayer === gameGrid[2][2]) {
+        console.log(currentPlayer, ' Wins!')
+    }
+    if (currentPlayer === gameGrid[0][2] &&
+        currentPlayer === gameGrid[1][1] &&
+        currentPlayer === gameGrid[2][0]) {
+        console.log(currentPlayer, ' Wins!')
+    }
+
 }
-//r1c3
+
 const updateGameGrid =(id) => {
     idArr = id.split('')
     let rvalue = parseInt(idArr[1])-1
     let cvalue = parseInt(idArr[3])-1
-    gameGrid[1][2] = currentPlayer
+    gameGrid[rvalue][cvalue] = currentPlayer
 }
 
 
@@ -93,6 +118,8 @@ gameContainer.addEventListener('click', function(e){
         e.target.textContent = currentPlayer
         gridID = e.target.id
         updateGameGrid(gridID)
+        console.log(gameGrid)
+        checkWinCondition()
         changeCurrentPlayer()
     } 
     })
@@ -102,3 +129,4 @@ gameContainer.addEventListener('click', function(e){
 
 
 clearBtn.addEventListener('click', clearGame)
+//checkWinCondition()
