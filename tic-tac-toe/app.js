@@ -54,9 +54,8 @@ let gameGrid = [
     [0, 0, 0]
 ]
 
-let player1 = 'x'
-let player2 = 'o'
-
+let gameOver = false
+let round = 1
 const clearSquare = (square) =>{
     square.textContent = ''
 }
@@ -68,6 +67,10 @@ const clearGame = () => {
         [0, 0, 0],
         [0, 0, 0]
     ]
+    const results = document.querySelector('.results')
+    results.style.display = 'none'
+    gameOver = false
+    round = 1
 }
 
 
@@ -81,6 +84,7 @@ const changeCurrentPlayer = () =>{
 
 
 const checkWinCondition = () => {
+    console.log(round)
     for (let i = 0; i < 3; i++) {
         if (currentPlayer === gameGrid[i][0] &&
             currentPlayer === gameGrid[i][1] &&
@@ -107,6 +111,9 @@ const checkWinCondition = () => {
         console.log(currentPlayer, ' Wins!')
         return currentPlayer
     }
+    if (round === 9){
+        return 'tie'
+    } 
 
 }
 
@@ -122,22 +129,26 @@ const displayWinner = (winner) => {
     const results = document.querySelector('.results')
     results.style.display = 'flex'
     winText = document.querySelector('.winner')
-    if (winner = currentPlayer ) {
+    if (winner === currentPlayer ) {
         winText.textContent = `${currentPlayer} Wins!`
     } else{
         winText.textContent = `It's a tie!`
     }
+    gameOver = true
 }
 
 gameContainer.addEventListener('click', function(e){
-    if (e.target.textContent === ''){
-        e.target.textContent = currentPlayer
-        gridID = e.target.id
-        updateGameGrid(gridID)
-        let winner = checkWinCondition()
-        if (winner === currentPlayer) displayWinner(winner)
-        changeCurrentPlayer()
-    } 
+    if(gameOver === false){
+        if (e.target.textContent === ''){
+            e.target.textContent = currentPlayer
+            gridID = e.target.id
+            updateGameGrid(gridID)
+            let winner = checkWinCondition()
+            if (winner === currentPlayer || winner === 'tie') displayWinner(winner)
+            changeCurrentPlayer()
+            round +=1
+        } 
+    }
     })
 
 
