@@ -77,7 +77,7 @@ const clearGame = () => {
     results.style.display = 'none'
     gameOver = false
     round = 1
-    h2.innerHTML = "It's <span class="playerColor">x</span> turn"
+    h2.innerHTML = "It's <span class='playerColor'>x</span> turn"
     displayCurrentPlayer()
 }
 
