@@ -50,7 +50,6 @@ const squares = document.querySelectorAll('.square')
 const h2 = document.querySelector('h2')
 const oTrack = document.querySelector('#oTracker')
 const xTrack = document.querySelector('#xTracker')
-const spanColor = document.querySelector('.playerColor')
 let currentPlayer = 'x'
 let oWins = 0
 let xWins = 0
@@ -143,10 +142,12 @@ const displayWinner = (winner) => {
         updateWinTracker()
     } else{
         winText.textContent = `It's a tie!`
+        results.style.backgroundColor ='green'
     }
     gameOver = true
 }
 const  displayCurrentPlayer = () =>{
+    const spanColor = document.querySelector('.playerColor')
     if (gameOver === false){
         spanColor.textContent = `${currentPlayer}`
         if (currentPlayer === 'x'){
