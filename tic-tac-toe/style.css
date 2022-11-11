@@ -98,3 +98,7 @@ h2{
     justify-content: center;
     align-items: center;
 }
+.playerColor{
+    color: red;
+    font-size: 5vmin;
+}

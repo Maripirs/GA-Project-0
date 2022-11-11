@@ -50,6 +50,7 @@ const squares = document.querySelectorAll('.square')
 const h2 = document.querySelector('h2')
 const oTrack = document.querySelector('#oTracker')
 const xTrack = document.querySelector('#xTracker')
+const spanColor = document.querySelector('.playerColor')
 let currentPlayer = 'x'
 let oWins = 0
 let xWins = 0
@@ -76,6 +77,7 @@ const clearGame = () => {
     results.style.display = 'none'
     gameOver = false
     round = 1
+    h2.innerHTML = "It's <span class="playerColor">x</span> turn"
     displayCurrentPlayer()
 }
 
@@ -146,7 +148,13 @@ const displayWinner = (winner) => {
 }
 const  displayCurrentPlayer = () =>{
     if (gameOver === false){
-        h2.textContent = `It's ${currentPlayer} turn`
+        spanColor.textContent = `${currentPlayer}`
+        if (currentPlayer === 'x'){
+            spanColor.style.color ='red'
+        }else{
+            spanColor.style.color ='blue'
+        }
+        
     } else {
         h2.textContent = `Game Over!`
     }
@@ -154,11 +162,11 @@ const  displayCurrentPlayer = () =>{
 }
 
 const updateWinTracker =() =>{
-    if(currentPlayer != 'x'){
-        xWins === 1
+    if(currentPlayer === 'x'){
+        xWins = 1
         xTrack.textContent = xWins
-    }else if(currentPlayer != 'o'){
-        oWins === 1
+    }else if(currentPlayer === 'o'){
+        oWins = 1
         oTrack.textContent = oWins
     }
 }
