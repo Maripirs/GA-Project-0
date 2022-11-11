@@ -11,22 +11,26 @@
 <body>
     <h1>Tic Tac Toe</h1>
     <h2> It's x turn</h2>
-    <div class = 'gameCont'>  
-        <div class = 'rowCont' id = 'row 1'>
-            <div class = 'square row1 col1' id="r1c1"></div>  
-            <div class = 'square row1 col2' id="r1c2"></div>  
-            <div class = 'square row1 col3' id="r1c3"></div>  
+    <div id="gameAndTrackers">
+        <div id="oTracker" class="tracker">0</div>
+        <div class = 'gameCont'>  
+            <div class = 'rowCont' id = 'row 1'>
+                <div class = 'square row1 col1' id="r1c1"></div>  
+                <div class = 'square row1 col2' id="r1c2"></div>  
+                <div class = 'square row1 col3' id="r1c3"></div>  
+            </div>
+            <div class = 'rowCont' id = 'row 2'>
+                <div class = 'square row2 col1' id="r2c1"></div>  
+                <div class = 'square row2 col2' id="r2c2"></div>  
+                <div class = 'square row2 col3' id="r2c3"></div>  
+            </div>
+            <div class = 'rowCont' id = 'row 3'>
+                <div class = 'square row3 col1' id="r3c1"></div>  
+                <div class = 'square row3 col2' id="r3c2"></div>  
+                <div class = 'square row3 col3' id="r3c3"></div>  
+            </div>
         </div>
-        <div class = 'rowCont' id = 'row 2'>
-            <div class = 'square row2 col1' id="r2c1"></div>  
-            <div class = 'square row2 col2' id="r2c2"></div>  
-            <div class = 'square row2 col3' id="r2c3"></div>  
-        </div>
-        <div class = 'rowCont' id = 'row 3'>
-            <div class = 'square row3 col1' id="r3c1"></div>  
-            <div class = 'square row3 col2' id="r3c2"></div>  
-            <div class = 'square row3 col3' id="r3c3"></div>  
-        </div>
+        <div id="xTracker" class="tracker">0</div>
     </div>
     <button class = clear> Clear</button>
     <div class = 'results'>

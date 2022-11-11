@@ -43,12 +43,16 @@ clear(){
 eventlistener clearbutton (click, clear())
 
 */
+
 const gameContainer = document.querySelector('.gameCont')
 const clearBtn = document.querySelector('.clear')
 const squares = document.querySelectorAll('.square')
 const h2 = document.querySelector('h2')
+const oTrack = document.querySelector('#oTracker')
+const xTrack = document.querySelector('#xTracker')
 let currentPlayer = 'x'
-
+let oWins = 0
+let xWins = 0
 let gameGrid = [
     [0, 0, 0],
     [0, 0, 0],
@@ -72,6 +76,7 @@ const clearGame = () => {
     results.style.display = 'none'
     gameOver = false
     round = 1
+    displayCurrentPlayer()
 }
 
 
@@ -90,26 +95,22 @@ const checkWinCondition = () => {
         if (currentPlayer === gameGrid[i][0] &&
             currentPlayer === gameGrid[i][1] &&
             currentPlayer === gameGrid[i][2]) {
-            console.log(currentPlayer, ' Wins!')
             return currentPlayer
         }
         if (currentPlayer === gameGrid[0][i] &&
             currentPlayer === gameGrid[1][i] &&
             currentPlayer=== gameGrid[2][i]) {
-            console.log(currentPlayer, ' Wins!')
             return currentPlayer
         }
     }
     if (currentPlayer === gameGrid[0][0] &&
         currentPlayer === gameGrid[1][1] &&
         currentPlayer === gameGrid[2][2]) {
-        console.log(currentPlayer, ' Wins!')
         return currentPlayer
     }
     if (currentPlayer === gameGrid[0][2] &&
         currentPlayer === gameGrid[1][1] &&
         currentPlayer === gameGrid[2][0]) {
-        console.log(currentPlayer, ' Wins!')
         return currentPlayer
     }
     if (round === 9){
@@ -137,6 +138,7 @@ const displayWinner = (winner) => {
         } else {
             results.style.backgroundColor = 'blue'
         }
+        updateWinTracker()
     } else{
         winText.textContent = `It's a tie!`
     }
@@ -150,6 +152,17 @@ const  displayCurrentPlayer = () =>{
     }
 
 }
+
+const updateWinTracker =() =>{
+    if(currentPlayer != 'x'){
+        xWins === 1
+        xTrack.textContent = xWins
+    }else if(currentPlayer != 'o'){
+        oWins === 1
+        oTrack.textContent = oWins
+    }
+}
+
 gameContainer.addEventListener('click', function(e){
     if(gameOver === false){
         if (e.target.textContent === ''){
@@ -159,9 +172,12 @@ gameContainer.addEventListener('click', function(e){
             } else {
                 e.target.style.color = 'blue'
             }
+    
             gridID = e.target.id
             updateGameGrid(gridID)
+    
             let winner = checkWinCondition()
+    
             if (winner === currentPlayer || winner === 'tie') displayWinner(winner)
             changeCurrentPlayer()
             displayCurrentPlayer()

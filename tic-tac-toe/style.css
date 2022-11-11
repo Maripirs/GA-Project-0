@@ -74,3 +74,27 @@ h2{
     font-size: 3vmin;
     margin-bottom: 5vmin;
 }
+
+#gameAndTrackers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+}
+
+#xTracker{
+    background-color: red;
+}
+#oTracker{
+    background-color: blue;
+}
+.tracker{
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
