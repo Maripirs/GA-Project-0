@@ -43,11 +43,11 @@ clear(){
 eventlistener clearbutton (click, clear())
 
 computerTurn(level)
-    if level = random{
+    if level = 1{
         findEmptySpot()
-    }else if level = smart{
+    }else if level = 2{
         decidePlacement()
-    }else if level = medium{
+    }else if level = 3{
         if computer turn even{
             findEmptySpot
         } else {
@@ -93,9 +93,11 @@ const squares = document.querySelectorAll('.square')
 const h2 = document.querySelector('h2')
 const oTrack = document.querySelector('#oTracker')
 const xTrack = document.querySelector('#xTracker')
+const results = document.querySelector('.results')
 let currentPlayer = 'x'
 let oWins = 0
 let xWins = 0
+let turnNumber = 1
 let gameGrid = [
     [0, 0, 0],
     [0, 0, 0],
@@ -108,6 +110,9 @@ const clearSquare = (square) =>{
     square.textContent = ''
 }
 
+
+//resets the array grid to 0 and clears the screen
+//gets rid of winner screen and resets round tracker
 const clearGame = () => {
     squares.forEach(clearSquare)
     gameGrid = [
@@ -115,15 +120,15 @@ const clearGame = () => {
         [0, 0, 0],
         [0, 0, 0]
     ]
-    const results = document.querySelector('.results')
     results.style.display = 'none'
     gameOver = false
     round = 1
+    currentPlayer = 'x'
     h2.innerHTML = "It's <span class='playerColor'>x</span> turn"
     displayCurrentPlayer()
 }
 
-
+//swaps betwen o and x
 const changeCurrentPlayer = () =>{    
     if (currentPlayer === 'x'){
         currentPlayer = 'o'
@@ -132,7 +137,7 @@ const changeCurrentPlayer = () =>{
     }
 }
 
-
+//checks if the current user has 3 in a row or if it's been 9 rounds already
 const checkWinCondition = () => {
     console.log(round)
     for (let i = 0; i < 3; i++) {
@@ -163,16 +168,23 @@ const checkWinCondition = () => {
 
 }
 
-const updateGameGrid =(id) => {
-    idArr = id.split('')
-    let rvalue = parseInt(idArr[1])-1
-    let cvalue = parseInt(idArr[3])-1
+//extracts the coordinates of user's choice and draws their ma
+const updateGameGrid =(coordinates) => {
+    let rvalue = null
+    let cvalue = null
+    if (coordinates.length === 4){
+        let coordinatesArr = coordinates.split('')
+        rvalue = parseInt(coordinatesArr[1])-1
+        cvalue = parseInt(coordinatesArr[3])-1
+    } else {
+        rvalue = coordinates[0]
+        cvalue = coordinates[1]
+    }
     gameGrid[rvalue][cvalue] = currentPlayer
 }
 
 
 const displayWinner = (winner) => {
-    const results = document.querySelector('.results')
     results.style.display = 'flex'
     winText = document.querySelector('.winner')
     if (winner === currentPlayer ) {
@@ -207,13 +219,73 @@ const  displayCurrentPlayer = () =>{
 
 const updateWinTracker =() =>{
     if(currentPlayer === 'x'){
-        xWins = 1
+        xWins += 1
         xTrack.textContent = xWins
     }else if(currentPlayer === 'o'){
-        oWins = 1
+        oWins += 1
         oTrack.textContent = oWins
     }
 }
+
+
+
+const updateDrawing = (computerChoice) =>{
+    console.log(computerChoice[0], computerChoice[1]);
+    console.log(`#r${computerChoice[0]}c${computerChoice[1]}`);
+    const computerSquare = document.querySelector(`#r${computerChoice[0] +1}c${computerChoice[1] + 1}`);
+    computerSquare.textContent = currentPlayer
+    if (currentPlayer === 'x') {
+        computerSquare.style.color = 'red'
+    } else {
+        computerSquare.style.color = 'blue'
+    }
+}
+
+
+const findEmptySpot = () => {
+    let computerChoice = null
+    while (computerChoice === null) {
+        let computerRow = Math.floor(Math.random() * 3);
+        if (gameGrid[computerRow].includes(0)){
+            let computerCol = Math.floor(Math.random() * 3)
+            if (gameGrid[computerRow][computerCol] === 0){
+                return [computerRow,computerCol]
+            }
+        }
+    }            
+}
+
+
+const computerTurn =(level) =>{
+    let computerChoice = null
+    if (level === 1){
+        computerChoice = findEmptySpot()
+        console.log(computerChoice, 'computer Choice')
+    }else if (level = 2){
+        if (computerTurn%2 === 0){
+            findEmptySpot()
+        } else {
+            decidePlacement()
+        }
+    }else if (level = 2){
+        decidePlacement()
+    }
+
+    updateGameGrid(computerChoice)
+    updateDrawing(computerChoice)
+    let winner = checkWinCondition()
+    if (winner === currentPlayer || winner === 'tie') displayWinner(winner)
+    changeCurrentPlayer()
+    displayCurrentPlayer()
+    round +=1
+    turnNumber += 1
+}
+
+
+
+
+
+
 
 gameContainer.addEventListener('click', function(e){
     if(gameOver === false){
@@ -224,19 +296,22 @@ gameContainer.addEventListener('click', function(e){
             } else {
                 e.target.style.color = 'blue'
             }
-    
+            
             gridID = e.target.id
             updateGameGrid(gridID)
-    
+            
             let winner = checkWinCondition()
     
             if (winner === currentPlayer || winner === 'tie') displayWinner(winner)
             changeCurrentPlayer()
             displayCurrentPlayer()
             round +=1
+            if (gameOver === false){
+                computerTurn(1)
+            }
         } 
     }
-    })
+})
 
 
 
