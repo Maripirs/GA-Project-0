@@ -57,6 +57,7 @@ h1{
     align-items: center;
     white-space: nowrap;
     margin-bottom: 2vmin;
+    border-radius: 2vmin;
 }
 h3, h4, h5 {
     margin: 1vmin;

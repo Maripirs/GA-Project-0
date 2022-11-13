@@ -42,6 +42,49 @@ clear(){
 
 eventlistener clearbutton (click, clear())
 
+computerTurn(level)
+    if level = random{
+        findEmptySpot()
+    }else if level = smart{
+        decidePlacement()
+    }else if level = medium{
+        if computer turn even{
+            findEmptySpot
+        } else {
+            decidePlacement
+        }
+    }
+    updateGrid()
+    updateDrawing()
+    check for wincondition()
+    if gameOver
+        display winner()
+
+
+decidePlacement{
+    if round < 2{
+        if center empty{}
+        draw center
+        }   else {
+        draw corner
+        }
+    check if current player about to win
+            complete
+    check if oponent is about to win
+            block
+    
+    draw corner
+}
+
+
+findEmptySpot()
+    computerChoice = null
+    while computerChoice = null
+        pick a row at random
+        if includes 0
+            pick random column
+            computerChoice = gameGrid [randomRow][randomColumn]
+
 */
 
 const gameContainer = document.querySelector('.gameCont')
